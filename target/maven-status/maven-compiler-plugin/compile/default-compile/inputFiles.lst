@@ -1,0 +1,13 @@
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\controller\IndexController.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\dao\content\ClientArcMapper.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\entity\RecPreInput.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\service\ClientArcService.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\controller\RecPreInputController.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\entity\User.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\util\GuidUtil.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\dao\content\RecPreInputMapper.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\dao\login\UserMapper.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\service\RecPreInputService.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\service\UserLoginServer.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\entity\AjaxJson.java
+G:\auexpressapi\auexpressapi\src\main\java\com\auexpress\util\EncryptionCommen.java

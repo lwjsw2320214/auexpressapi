@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.auexpress.dao.content.RecPreInputMapper">
+
+
+    <select id="getPageList" resultType="RecPreInput">
+        SELECT * FROM(
+        SELECT  *,row_number() over (order by ddate asc) as rownumber FROM rec_pre_input
+        <where>
+            icid=#{icid} and irid=#{irid}
+        </where>
+        ) AS A WHERE A.rownumber between #{startRow} and #{endRow}
+    </select>
+
+    <select id="getAllRowCount" resultType="Integer">
+        SELECT COUNT (iid) FROM rec_pre_input
+         <where>
+             icid=#{icid} and irid=#{irid}
+         </where>
+    </select>
+
+</mapper>
