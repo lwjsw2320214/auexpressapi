@@ -6,8 +6,8 @@ package com.auexpress.entity;
 public class AjaxJson {
     private Boolean result = Boolean.valueOf(false);
     private Object obj;
-    private  Integer pageCount;
-    private  Integer page;
+    private  Integer pageCount=0;
+    private  Integer page=0;
 
     public Boolean getResult()
     {
