@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.auexpress.dao.content.SmsBatchMapper">
+
+    <select id="getPageList" resultType="SmsBatch">
+        SELECT * From (
+        SELECT *,row_number() over (ORDER BY create_date DESC )  AS rownumber
+        FROM sms_batch WHERE create_user=#{icid}
+        ) AS a WHERE a.rownumber BETWEEN #{startRow} AND #{endRow}
+    </select>
+
+    <select id="getAllRowCount" resultType="Integer">
+        SELECT COUNT (id)
+        FROM sms_batch WHERE create_user=#{icid}
+    </select>
+    
+    <insert id="add" >
+        INSERT  INTO sms_batch (batch_number,create_user,create_date)
+         VALUES (#{batchNumber},#{createUser},#{createDate})
+    </insert>
+    
+    <select id="isRepeat" resultType="Integer">
+        SELECT COUNT (id)
+        FROM sms_batch WHERE batch_number=#{batchNumber} AND create_user=#{createUser}
+    </select>
+
+</mapper>

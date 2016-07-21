@@ -41,7 +41,7 @@ public class RecPreInputController {
         List<RecPreInput> list=service.getPageList(icid,irid,page,5);
         ajaxJson.setResult(true);
         ajaxJson.setPageCount(service.getPageCount(icid,irid,5));
-        ajaxJson.setPage(1);
+        ajaxJson.setPage(page);
         ajaxJson.setObj(list);
         }catch (Exception e){
             e.printStackTrace();
