@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by 缁村啗 on 2016/07/16.
+ * Created by  on 2016/07/16.
  */
 
 @Service
@@ -19,18 +19,16 @@ public class RecPreInputService{
         @Autowired
         RecPreInputMapper dao;
 
-    public List<RecPreInput> getPageList(Integer icid,Integer irid,Integer page,int pageSize){
+    public List<RecPreInput> getPageList(Integer icid,Integer irid,Integer page,int pageSize,Integer batchId){
         Integer startRow=(page-1)*pageSize+1;
         Integer endRow=page*pageSize;
-        return  dao.getPageList(icid,irid,startRow,endRow);
+        return  dao.getPageList(icid,irid,startRow,endRow,batchId);
     }
 
-    /**
-     * 获取总页数
-     * */
-    public Integer getPageCount(Integer icid,Integer irid,int pageSize){
+
+    public Integer getPageCount(Integer icid,Integer irid,int pageSize,Integer batchId){
         Integer pageTotal=0;
-        Integer total=dao.getAllRowCount(icid,irid);
+        Integer total=dao.getAllRowCount(icid,irid,batchId);
         if(total%pageSize>0){
             pageTotal=(total/pageSize)+1;
         }else {

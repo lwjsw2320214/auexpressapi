@@ -9,6 +9,9 @@
         SELECT  *,row_number() over (order by ddate asc) as rownumber FROM rec_pre_input
         <where>
             icid=#{icid} and irid=#{irid}
+            <if test="batchId!='' and batchId!=null ">
+                AND  batch_id=#{batchId}
+            </if>
         </where>
         ) AS A WHERE A.rownumber between #{startRow} and #{endRow}
     </select>
@@ -17,6 +20,9 @@
         SELECT COUNT (iid) FROM rec_pre_input
          <where>
              icid=#{icid} and irid=#{irid}
+             <if test="batchId!='' and batchId!=null ">
+                 AND  batch_id=#{batchId}
+             </if>
          </where>
     </select>
 

@@ -83,6 +83,11 @@ public class RecPreInput {
     /// </summary>
     private BigDecimal total;
 
+    /**
+     * 批次号
+     * */
+    private Integer batchId;
+
 
     public Integer getIid() {
         return iid;
@@ -205,5 +210,13 @@ public class RecPreInput {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    public Integer getBatchId() {
+        return batchId;
+    }
+
+    public void setBatchId(Integer batchId) {
+        this.batchId = batchId;
     }
 }

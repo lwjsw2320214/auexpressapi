@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- * Created by Î¬¾ü on 2016/07/18.
+ * Created by on 2016/07/18.
  */
 @Controller
 @RequestMapping({"/index"})
