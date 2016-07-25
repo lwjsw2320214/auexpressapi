@@ -26,4 +26,19 @@
          </where>
     </select>
 
+    <select id="getiid" resultType="Integer">
+        SELECT  iid FROM rec_pre_input
+        <where>
+            icid=#{icid}
+            AND cmemo LIKE '%'+#{waybillId}+'%'
+        </where>
+    </select>
+
+    <select id="getRecPreInput" resultType="RecPreInput">
+        SELECT  * FROM rec_pre_input
+        <where>
+            iid=#{iid}
+        </where>
+    </select>
+
 </mapper>

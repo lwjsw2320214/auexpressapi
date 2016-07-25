@@ -15,4 +15,14 @@ public interface RecPreInputMapper {
 
 
     Integer getAllRowCount(@Param("icid") Integer icid, @Param("irid") Integer irid,@Param("batchId")Integer batchId);
+
+    /**
+     * 根据原始运单号获取运单id
+     * */
+    Integer getiid(@Param("icid")Integer icid,@Param("waybillId")String waybillId);
+
+    /**
+     * 获取单个运单的详细信息
+     * */
+    RecPreInput getRecPreInput(@Param("iid")Integer iid);
  }

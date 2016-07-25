@@ -9,85 +9,95 @@ import java.math.BigDecimal;
  */
 public class RecPreInput {
 
-    /// <summary>
-    /// 主键id
-    /// </summary>
+    /**
+     * 主键id
+     * */
     private Integer iid ;
 
-    /// <summary>
-    /// 用户id
-    /// </summary>
+    /**
+     * 用户id
+     * */
     private Integer icid ;
 
-    /// <summary>
-    /// 发货id
-    /// </summary>
+    /**
+     * 发货id
+     * */
     private Integer irid ;
 
-    /// <summary>
-    /// 录入日期
-    /// </summary>
+    /**
+     * 录入日期
+     * */
     private String ddate ;
 
-    /// <summary>
-    /// 快递类别
-    /// </summary>
+    /**
+     * 快递日期
+     * */
+    private String dsysdate;
+
+    /**
+     * 快递类别
+     * */
     private String cemskind ;
 
-    /// <summary>
-    /// 运单号
-    /// </summary>
+    /**
+     * 运单号
+     * */
     private String cnum ;
 
-    /// <summary>
-    /// 目的地
-    /// </summary>
+    /**
+     * 数量
+     * */
+    private  Integer iitem;
+
+    /**
+     * 目的地
+     * */
     private String cdes ;
 
-    /// <summary>
-    /// 中文品名
-    /// </summary>
+    /**
+     * 中文品名
+     * */
     private String cgoods ;
 
-    /// <summary>
-    /// 产品重量
-    /// </summary>
+    /**
+     * 产品重量
+     * */
     private BigDecimal fweight ;
 
-    /// <summary>
-    /// 收货人
-    /// </summary>
+    /**
+     * 收货人
+     * */
     private String creceiver ;
 
-    /// <summary>
-    /// 收货电话
-    /// </summary>
+
+    /**
+     * 收货电话
+     * */
     private String cphone ;
 
-    /// <summary>
-    /// 收货人详细地址
-    /// </summary>
+    /**
+     * 收货人详细地址
+     * */
     private String caddr ;
-    /// <summary>
-    /// 收件人省份
-    /// </summary>
+    /**
+     * 收件人省份
+     * */
     private String cprovince ;
 
-    /// <summary>
-    /// 收件人城市
-    /// </summary>
+    /**
+     * 收件人城市
+     * */
     private String ccity ;
 
-    /// <summary>
-    /// 总价
-    /// </summary>
+    /**
+     * 总价
+     * */
     private BigDecimal total;
 
     /**
      * 批次号
      * */
     private Integer batchId;
-
 
     public Integer getIid() {
         return iid;
@@ -121,6 +131,14 @@ public class RecPreInput {
         this.ddate = ddate;
     }
 
+    public String getDsysdate() {
+        return dsysdate;
+    }
+
+    public void setDsysdate(String dsysdate) {
+        this.dsysdate = dsysdate;
+    }
+
     public String getCemskind() {
         return cemskind;
     }
@@ -135,6 +153,14 @@ public class RecPreInput {
 
     public void setCnum(String cnum) {
         this.cnum = cnum;
+    }
+
+    public Integer getIitem() {
+        return iitem;
+    }
+
+    public void setIitem(Integer iitem) {
+        this.iitem = iitem;
     }
 
     public String getCdes() {
@@ -219,4 +245,6 @@ public class RecPreInput {
     public void setBatchId(Integer batchId) {
         this.batchId = batchId;
     }
+
+
 }

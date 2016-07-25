@@ -6,6 +6,8 @@ import com.auexpress.service.UserLoginServer;
 import com.auexpress.util.EncryptionCommen;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.auexpress.util.NetworkLibrary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,4 +68,16 @@ public class IndexController
         }
         return ajaxJson;
     }
+
+
+    @RequestMapping(value={"getPost"}, method=RequestMethod.GET)
+    @ResponseBody
+    public  AjaxJson  getPost(){
+        AjaxJson ajaxJson=new AjaxJson();
+        NetworkLibrary networkLibrary=new NetworkLibrary();
+        String count= networkLibrary.getPost("Http://www.baidu.com");
+        ajaxJson.setObj(count);
+        return ajaxJson;
+    }
+
 }

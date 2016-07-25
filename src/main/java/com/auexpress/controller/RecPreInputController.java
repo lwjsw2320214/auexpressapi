@@ -50,4 +50,19 @@ public class RecPreInputController {
         }
         return ajaxJson;
     }
+
+    /**
+     * 获取到单个运单
+     * */
+    @RequestMapping(value = "getRecPreInput",method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson getRecPreInput(Integer iid,Integer icid,String waybillId){
+        AjaxJson ajaxJson=new AjaxJson();
+        RecPreInput recPreInput= service.getRecPreInput(iid, icid, waybillId);
+        ajaxJson.setObj(recPreInput);
+        if(recPreInput!=null){
+            ajaxJson.setResult(true);
+        }
+        return  ajaxJson;
+    }
 }

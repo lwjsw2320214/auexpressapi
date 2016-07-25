@@ -5,6 +5,7 @@ import com.auexpress.dao.content.RecPreInputMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -35,6 +36,18 @@ public class RecPreInputService{
             pageTotal=total/pageSize;
         }
         return  pageTotal;
+    }
+
+   public  RecPreInput getRecPreInput(Integer iid,Integer icid,String waybillId){
+        RecPreInput recPreInput=null;
+        //如果旧运单不为空则表示要这个运单为新运单要通过查询获取id
+        if (!StringUtils.isEmpty(waybillId)){
+            iid=  dao.getiid(icid,waybillId);
+        }
+        if(!StringUtils.isEmpty(iid)&&iid!=0){
+            recPreInput= dao.getRecPreInput(iid);
+        }
+        return  recPreInput;
     }
 
 }
