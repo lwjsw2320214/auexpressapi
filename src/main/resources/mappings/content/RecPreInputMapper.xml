@@ -6,7 +6,7 @@
 
     <select id="getPageList" resultType="RecPreInput">
         SELECT * FROM(
-        SELECT  *,row_number() over (order by ddate asc) as rownumber FROM rec_pre_input
+        SELECT  *,row_number() over (order by batch_date DESC ) as rownumber FROM rec_pre_input
         <where>
             icid=#{icid} and irid=#{irid}
             <if test="batchId!='' and batchId!=null ">
@@ -30,7 +30,7 @@
         SELECT  iid FROM rec_pre_input
         <where>
             icid=#{icid}
-            AND cmemo LIKE '%'+#{waybillId}+'%'
+            AND ctransnote LIKE '%'+#{waybillId}+'%'
         </where>
     </select>
 
@@ -40,5 +40,12 @@
             iid=#{iid}
         </where>
     </select>
+    
+    <update id="saveBatcRecRecPreInput">
+        UPDATE rec_pre_input SET batch_id=#{batchId},batch_date=#{batchDate}
+        <where>
+            iid=#{iid}
+        </where>
+    </update>
 
 </mapper>

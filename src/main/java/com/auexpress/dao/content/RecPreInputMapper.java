@@ -3,6 +3,7 @@ package com.auexpress.dao.content;
 import com.auexpress.entity.RecPreInput;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,4 +26,6 @@ public interface RecPreInputMapper {
      * 获取单个运单的详细信息
      * */
     RecPreInput getRecPreInput(@Param("iid")Integer iid);
+
+    Integer saveBatcRecRecPreInput(@Param("iid")Integer iid,@Param("batchId")Integer batchId,@Param("batchDate")Date batchDate);
  }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,11 +39,13 @@ public class RecPreInputService{
         return  pageTotal;
     }
 
-   public  RecPreInput getRecPreInput(Integer iid,Integer icid,String waybillId){
+    @Transactional(readOnly = false)
+   public  RecPreInput getRecPreInput(Integer iid,Integer icid,String waybillId,Integer batchId){
         RecPreInput recPreInput=null;
         //如果旧运单不为空则表示要这个运单为新运单要通过查询获取id
         if (!StringUtils.isEmpty(waybillId)){
             iid=  dao.getiid(icid,waybillId);
+            dao.saveBatcRecRecPreInput(iid, batchId, new Date());
         }
         if(!StringUtils.isEmpty(iid)&&iid!=0){
             recPreInput= dao.getRecPreInput(iid);

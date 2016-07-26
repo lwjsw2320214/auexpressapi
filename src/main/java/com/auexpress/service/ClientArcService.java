@@ -1,6 +1,7 @@
 package com.auexpress.service;
 
 import com.auexpress.dao.content.ClientArcMapper;
+import com.auexpress.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,7 +14,7 @@ public class ClientArcService {
     @Autowired
     ClientArcMapper dao;
 
-    public Integer getIcid(String username)
+    public User getIcid(String username)
     {
         return this.dao.getIcid(username);
     }

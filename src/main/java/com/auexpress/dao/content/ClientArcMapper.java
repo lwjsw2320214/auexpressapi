@@ -1,5 +1,6 @@
 package com.auexpress.dao.content;
 
+import com.auexpress.entity.User;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -7,6 +8,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ClientArcMapper {
 
-     Integer getIcid(@Param("username") String paramString);
+     User getIcid(@Param("username") String paramString);
 
 }

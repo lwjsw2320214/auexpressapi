@@ -3,6 +3,8 @@ package com.auexpress.controller;
 import com.auexpress.entity.AjaxJson;
 import com.auexpress.entity.RecPreInput;
 import com.auexpress.service.RecPreInputService;
+import com.auexpress.service.UserLoginServer;
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -23,11 +25,15 @@ import java.util.List;
 public class RecPreInputController {
     @Autowired
     RecPreInputService service;
+    @Autowired
+    UserLoginServer userLoginServer;
 
     @RequestMapping(value = {"list", ""},method = RequestMethod.POST)
     @ResponseBody
-    public Object getRecPreInput(HttpServletRequest request,HttpServletResponse response){
+    public Object getRecPreInput(HttpServletRequest request,HttpServletResponse response,String username,String token){
         AjaxJson ajaxJson=new AjaxJson();
+        boolean v = this.userLoginServer.userVerification(username, token);
+        if (v){
         try{
             String paricid=request.getParameter("icid");
             Integer icid= Integer.parseInt(paricid);
@@ -48,20 +54,27 @@ public class RecPreInputController {
         }catch (Exception e){
             e.printStackTrace();
         }
+        }
         return ajaxJson;
     }
 
     /**
      * 获取到单个运单
+     * @param iid 运单id
+     * @param icid 用户id
+     * @param  waybillId 旧运单号id
      * */
     @RequestMapping(value = "getRecPreInput",method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson getRecPreInput(Integer iid,Integer icid,String waybillId){
+    public AjaxJson getRecPreInput(Integer iid,Integer icid,String waybillId,String username,String token,Integer batchId){
         AjaxJson ajaxJson=new AjaxJson();
-        RecPreInput recPreInput= service.getRecPreInput(iid, icid, waybillId);
-        ajaxJson.setObj(recPreInput);
-        if(recPreInput!=null){
-            ajaxJson.setResult(true);
+        boolean v = this.userLoginServer.userVerification(username, token);
+        if (v) {
+            RecPreInput recPreInput = service.getRecPreInput(iid, icid, waybillId,batchId);
+            ajaxJson.setObj(recPreInput);
+            if (recPreInput != null) {
+                ajaxJson.setResult(true);
+            }
         }
         return  ajaxJson;
     }

@@ -24,6 +24,9 @@ public class IndexController
     @Autowired
     UserLoginServer userLoginServer;
 
+    /**
+     * 登录
+     * */
     @RequestMapping(value={"list", ""}, method= RequestMethod.POST)
     @ResponseBody
     public AjaxJson Home(HttpServletResponse response, HttpServletRequest request)
@@ -45,6 +48,7 @@ public class IndexController
         User user = this.userLoginServer.login(username);
         if ((user != null) && (password.equals(user.getClientpassword())) && (user.getToken() != null))
         {
+            user.setClientpassword(null);
             ajaxJson.setResult(Boolean.valueOf(true));
             ajaxJson.setObj(user);
         }
@@ -70,7 +74,7 @@ public class IndexController
     }
 
 
-    @RequestMapping(value={"getPost"}, method=RequestMethod.GET)
+    @RequestMapping(value={"getPost"}, method=RequestMethod.POST)
     @ResponseBody
     public  AjaxJson  getPost(){
         AjaxJson ajaxJson=new AjaxJson();

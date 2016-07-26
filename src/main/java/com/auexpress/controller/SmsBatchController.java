@@ -3,6 +3,7 @@ package com.auexpress.controller;
 import com.auexpress.entity.AjaxJson;
 import com.auexpress.entity.SmsBatch;
 import com.auexpress.service.SmsBatchService;
+import com.auexpress.service.UserLoginServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,37 +25,46 @@ public class SmsBatchController {
     @Autowired
     SmsBatchService service;
 
+    @Autowired
+    UserLoginServer userLoginServer;
+
 
     @RequestMapping(value = "getList",method = RequestMethod.POST)
     @ResponseBody
-    public AjaxJson getList(HttpServletRequest request,HttpServletResponse response){
+    public AjaxJson getList(HttpServletRequest request,HttpServletResponse response,String username,String token){
         AjaxJson ajaxJson=new AjaxJson();
-        try {
-            String paricid=request.getParameter("icid");
-            Integer icid= Integer.parseInt(paricid);
-            String parpage=request.getParameter("page");
-            Integer page= Integer.parseInt(parpage);
-            List<SmsBatch> list = service.getPageList(icid,page,10);
-            ajaxJson.setResult(true);
-            ajaxJson.setPageCount(service.getPageCount(icid, 10));
-            ajaxJson.setPage(page);
-            ajaxJson.setObj(list);
-        }catch (Exception e){
+        boolean v = this.userLoginServer.userVerification(username, token);
+        if (v) {
+            try {
+                String paricid = request.getParameter("icid");
+                Integer icid = Integer.parseInt(paricid);
+                String parpage = request.getParameter("page");
+                Integer page = Integer.parseInt(parpage);
+                List<SmsBatch> list = service.getPageList(icid, page, 10);
+                ajaxJson.setResult(true);
+                ajaxJson.setPageCount(service.getPageCount(icid, 10));
+                ajaxJson.setPage(page);
+                ajaxJson.setObj(list);
+            } catch (Exception e) {
 
+            }
         }
         return ajaxJson;
     }
 
     @RequestMapping(value = "add",method = RequestMethod.POST)
     @ResponseBody
-    public  AjaxJson add(SmsBatch smsBatch,HttpServletRequest request,HttpServletResponse response){
+    public  AjaxJson add(SmsBatch smsBatch,HttpServletRequest request,HttpServletResponse response,String username,String token){
         AjaxJson ajaxJson=new AjaxJson();
-        try {
-            Integer i= service.add(smsBatch);
-            ajaxJson.setResult(true);
-            ajaxJson.setObj(i);
-        }catch (Exception e){
-            e.printStackTrace();
+        boolean v = this.userLoginServer.userVerification(username, token);
+        if (v) {
+            try {
+                Integer i = service.add(smsBatch);
+                ajaxJson.setResult(true);
+                ajaxJson.setObj(i);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return  ajaxJson;
     }

@@ -28,15 +28,18 @@ public class UserLoginServer {
     {
         GuidUtil uuid = new GuidUtil();
         User user = this.dao.Login(username);
+        User user1=null;
         if (user != null)
         {
-            Integer icid = this.clientArcService.getIcid(user.getMcaccount());
-            if (icid != null) {
-                user.setIcid(icid);
+            user1 = this.clientArcService.getIcid(user.getMcaccount());
+            if (user1 != null) {
+                //user.setIcid(icid);
+                user1.setMcaccount(user.getMcaccount());
+                user1.setClientpassword(user.getClientpassword());
+                user1.setToken(uuid.getUUID());
             }
-            user.setToken(uuid.getUUID());
         }
-        return user;
+        return user1;
     }
 
     public void removeCache(String key)
