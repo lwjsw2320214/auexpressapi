@@ -41,5 +41,12 @@
               <property name="suffix" value=".jsp"/>
        </bean>
        <cache:annotation-driven cache-manager="cacheManager"/>
+       <!--配置缓存-->
+       <bean id="cacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+              <property name="configLocation" value="classpath:ehcache.xml"/>
+       </bean>
+       <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+              <property name="cacheManager" ref="cacheManagerFactory"/>
+       </bean>
 
 </beans>

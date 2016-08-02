@@ -29,4 +29,9 @@ public interface SmsBatchMapper {
      * 查询是否有重复
      * */
     Integer isRepeat(SmsBatch smsBatch);
+
+    /**
+     * 软删除
+     * */
+    Integer delete(Integer id);
 }

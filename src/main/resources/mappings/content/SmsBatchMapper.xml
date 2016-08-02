@@ -6,13 +6,19 @@
     <select id="getPageList" resultType="SmsBatch">
         SELECT * From (
         SELECT *,row_number() over (ORDER BY create_date DESC )  AS rownumber
-        FROM sms_batch WHERE create_user=#{icid}
-        ) AS a WHERE a.rownumber BETWEEN #{startRow} AND #{endRow}
+        FROM sms_batch
+         WHERE
+         create_user=#{icid}
+         AND state=0
+        ) AS a WHERE
+         a.rownumber
+         BETWEEN #{startRow}
+         AND  #{endRow}
     </select>
 
     <select id="getAllRowCount" resultType="Integer">
         SELECT COUNT (id)
-        FROM sms_batch WHERE create_user=#{icid}
+        FROM sms_batch WHERE create_user=#{icid}  AND state=0
     </select>
     
     <insert id="add" >
@@ -22,7 +28,16 @@
     
     <select id="isRepeat" resultType="Integer">
         SELECT COUNT (id)
-        FROM sms_batch WHERE batch_number=#{batchNumber} AND create_user=#{createUser}
+        FROM sms_batch WHERE
+         batch_number=#{batchNumber}
+         AND create_user=#{createUser}
+         AND state=0
     </select>
+
+    <update id="delete">
+        UPDATE  sms_batch SET
+        state=1
+        WHERE  id=#{id}
+    </update>
 
 </mapper>

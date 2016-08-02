@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.auexpress.dao.content.CourierNumberMapper">
+
+    <select id="getCourierNumber" resultType="CourierNumber">
+        SELECT  TOP 1 courierNumber as mailno FROM  courier_number
+        <where>
+            state=0
+        </where>
+        ORDER  BY id ASC
+    </select>
+
+    <update id="updateCourierNumber">
+        UPDATE courier_number  SET
+          updateDate=#{updateDate},
+           updateUser=#{updateUser}
+           <where>
+               courierNumber=#{courierNumber}
+           </where>
+    </update>
+
+</mapper>

@@ -27,10 +27,12 @@ public class RecPreInputController {
     RecPreInputService service;
     @Autowired
     UserLoginServer userLoginServer;
+    //每页展示数量
+    private final  Integer rowCount=15;
 
     @RequestMapping(value = {"list", ""},method = RequestMethod.POST)
     @ResponseBody
-    public Object getRecPreInput(HttpServletRequest request,HttpServletResponse response,String username,String token){
+    public Object getRecPreInput(HttpServletRequest request,HttpServletResponse response,String username,String token,String cnum){
         AjaxJson ajaxJson=new AjaxJson();
         boolean v = this.userLoginServer.userVerification(username, token);
         if (v){
@@ -46,9 +48,9 @@ public class RecPreInputController {
             if (!StringUtils.isEmpty(parbatchId)){
                 batchId=Integer.parseInt(parbatchId);
             }
-            List<RecPreInput> list=service.getPageList(icid,irid,page,5,batchId);
+            List<RecPreInput> list=service.getPageList(icid,irid,page,rowCount,batchId,cnum);
             ajaxJson.setResult(true);
-            ajaxJson.setPageCount(service.getPageCount(icid,irid,5,batchId));
+            ajaxJson.setPageCount(service.getPageCount(icid,irid,rowCount,batchId,cnum));
             ajaxJson.setPage(page);
             ajaxJson.setObj(list);
         }catch (Exception e){

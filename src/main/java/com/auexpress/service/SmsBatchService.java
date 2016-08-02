@@ -60,4 +60,9 @@ public class SmsBatchService {
         return rowCount;
     }
 
+    @Transactional(readOnly = false)
+    public Integer delete(Integer id){
+        return dao.delete(id);
+    }
+
 }

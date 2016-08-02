@@ -6,11 +6,24 @@
 
     <select id="getPageList" resultType="RecPreInput">
         SELECT * FROM(
-        SELECT  *,row_number() over (order by batch_date DESC ) as rownumber FROM rec_pre_input
+        SELECT  rec_pre_input.*,b.batch_number,row_number() over (order by batch_date DESC ) as rownumber
+        FROM rec_pre_input LEFT  JOIN sms_batch AS b ON
+        rec_pre_input.batch_id=b.id
         <where>
-            icid=#{icid} and irid=#{irid}
+            icid=#{icid} AND irid=#{irid}
             <if test="batchId!='' and batchId!=null ">
-                AND  batch_id=#{batchId}
+                <if test="batchId==1">
+                    AND  batch_id IS  NULL
+                </if>
+                <if test="batchId==2">
+                    AND  batch_id IS  NOT  NULL
+                </if>
+                <if test="batchId>2">
+                    AND  batch_id=#{batchId}
+                </if>
+            </if>
+            <if test="cnum!='' and cnum!=null ">
+                AND  cnum LIKE '%'+#{cnum}+'%'
             </if>
         </where>
         ) AS A WHERE A.rownumber between #{startRow} and #{endRow}
@@ -18,10 +31,23 @@
 
     <select id="getAllRowCount" resultType="Integer">
         SELECT COUNT (iid) FROM rec_pre_input
+        LEFT  JOIN sms_batch AS b ON
+        rec_pre_input.batch_id=b.id
          <where>
-             icid=#{icid} and irid=#{irid}
+             icid=#{icid} AND irid=#{irid}
              <if test="batchId!='' and batchId!=null ">
-                 AND  batch_id=#{batchId}
+                 <if test="batchId==1">
+                     AND  batch_id IS  NULL
+                 </if>
+                 <if test="batchId==2">
+                     AND  batch_id IS  NOT  NULL
+                 </if>
+                 <if test="batchId>2">
+                     AND  batch_id=#{batchId}
+                 </if>
+             </if>
+             <if test="cnum!='' and cnum!=null ">
+                 AND  cnum LIKE '%'+#{cnum}+'%'
              </if>
          </where>
     </select>
@@ -30,7 +56,8 @@
         SELECT  iid FROM rec_pre_input
         <where>
             icid=#{icid}
-            AND ctransnote LIKE '%'+#{waybillId}+'%'
+             AND irid=0
+            AND cmemo LIKE '%'+#{waybillId}+'%'
         </where>
     </select>
 
@@ -47,5 +74,9 @@
             iid=#{iid}
         </where>
     </update>
+
+    <select id="getBatcrRecCount" resultType="Integer">
+        SELECT COUNT (iid)  FROM rec_pre_input WHERE irid=0 AND  batch_id=#{batchId}
+    </select>
 
 </mapper>

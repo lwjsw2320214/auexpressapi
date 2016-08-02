@@ -99,6 +99,26 @@ public class RecPreInput {
      * */
     private Integer batchId;
 
+    /**
+     * 快递人姓名
+     * */
+    private String csender;
+
+    /**
+     * 快递地址
+     * */
+     private String csaddr;
+
+    /**
+     * 电话
+     * */
+     private String csphone;
+
+    /**
+     * 批次号
+     * */
+    private  String batchNumber;
+
     public Integer getIid() {
         return iid;
     }
@@ -246,5 +266,35 @@ public class RecPreInput {
         this.batchId = batchId;
     }
 
+    public String getBatchNumber() {
+        return batchNumber;
+    }
 
+    public void setBatchNumber(String batchNumber) {
+        this.batchNumber = batchNumber;
+    }
+
+    public String getCsender() {
+        return csender;
+    }
+
+    public void setCsender(String csender) {
+        this.csender = csender;
+    }
+
+    public String getCsaddr() {
+        return csaddr;
+    }
+
+    public void setCsaddr(String csaddr) {
+        this.csaddr = csaddr;
+    }
+
+    public String getCsphone() {
+        return csphone;
+    }
+
+    public void setCsphone(String csphone) {
+        this.csphone = csphone;
+    }
 }

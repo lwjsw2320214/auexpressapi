@@ -4,7 +4,7 @@
         <mapper namespace="com.auexpress.dao.login.UserMapper">
 
     <select id="Login" resultType="User">
-    SELECT mcaccount,clientpassword FROM member_main
+    SELECT mcaccount,clientpassword FROM client
     <where>
         mcaccount=#{username}
     </where>

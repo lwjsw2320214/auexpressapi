@@ -21,16 +21,16 @@ public class RecPreInputService{
         @Autowired
         RecPreInputMapper dao;
 
-    public List<RecPreInput> getPageList(Integer icid,Integer irid,Integer page,int pageSize,Integer batchId){
+    public List<RecPreInput> getPageList(Integer icid,Integer irid,Integer page,int pageSize,Integer batchId,String cnum){
         Integer startRow=(page-1)*pageSize+1;
         Integer endRow=page*pageSize;
-        return  dao.getPageList(icid,irid,startRow,endRow,batchId);
+        return  dao.getPageList(icid,irid,startRow,endRow,batchId,cnum);
     }
 
 
-    public Integer getPageCount(Integer icid,Integer irid,int pageSize,Integer batchId){
+    public Integer getPageCount(Integer icid,Integer irid,int pageSize,Integer batchId,String cnum){
         Integer pageTotal=0;
-        Integer total=dao.getAllRowCount(icid,irid,batchId);
+        Integer total=dao.getAllRowCount(icid,irid,batchId,cnum);
         if(total%pageSize>0){
             pageTotal=(total/pageSize)+1;
         }else {
@@ -51,6 +51,14 @@ public class RecPreInputService{
             recPreInput= dao.getRecPreInput(iid);
         }
         return  recPreInput;
+    }
+
+    /**
+     * 查询当前批次下
+     * 面是否有还有数据
+     * */
+    public  Integer getBatcrRecCount(Integer batchId){
+        return  dao.getBatcrRecCount(batchId);
     }
 
 }
