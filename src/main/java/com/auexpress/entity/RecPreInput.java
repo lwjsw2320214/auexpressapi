@@ -115,6 +115,11 @@ public class RecPreInput {
      private String csphone;
 
     /**
+     * 备注
+     * */
+    private String cmemo;
+
+    /**
      * 批次号
      * */
     private  String batchNumber;
@@ -296,5 +301,13 @@ public class RecPreInput {
 
     public void setCsphone(String csphone) {
         this.csphone = csphone;
+    }
+
+    public String getCmemo() {
+        return cmemo;
+    }
+
+    public void setCmemo(String cmemo) {
+        this.cmemo = cmemo;
     }
 }

@@ -48,7 +48,6 @@ public class IndexController
         User user = this.userLoginServer.login(username);
         if ((user != null) && (password.equals(user.getClientpassword())) && (user.getToken() != null))
         {
-            user.setClientpassword(null);
             ajaxJson.setResult(Boolean.valueOf(true));
             ajaxJson.setObj(user);
         }
