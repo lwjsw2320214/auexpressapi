@@ -61,4 +61,12 @@ public class RecPreInputService{
         return  dao.getBatcrRecCount(batchId);
     }
 
+    /**
+     * 查询当前批次下所有
+     * 所有的未处理运单
+     * */
+    public  List<RecPreInput> getAllBatcrRec(Integer batchId){
+        return  dao.getAllBatcrRec(batchId);
+    }
+
 }

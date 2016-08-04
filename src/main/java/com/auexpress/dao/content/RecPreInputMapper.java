@@ -34,4 +34,10 @@ public interface RecPreInputMapper {
      * 查询当前批次号下面是否还有数据
      * */
      Integer getBatcrRecCount(@Param("batchId")Integer batchId);
+
+    /**
+     * 获取当前批次下所有未处理的
+     * 运单
+     * */
+    List<RecPreInput> getAllBatcrRec(@Param("batchId")Integer batchId);
  }

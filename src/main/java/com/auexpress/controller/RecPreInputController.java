@@ -80,4 +80,23 @@ public class RecPreInputController {
         }
         return  ajaxJson;
     }
+
+    /**
+     * 获取当前批次
+     * 下所有的数据
+     * */
+    @RequestMapping(value = "getAllBatcrRec",method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxJson getAllBatcrRec(String username,String token,Integer batchId){
+        AjaxJson ajaxJson=new AjaxJson();
+        boolean v = this.userLoginServer.userVerification(username, token);
+        if (v) {
+            List<RecPreInput> list = service.getAllBatcrRec(batchId);
+            ajaxJson.setObj(list);
+            if (list != null) {
+                ajaxJson.setResult(true);
+            }
+        }
+        return  ajaxJson;
+    }
 }

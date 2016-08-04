@@ -79,4 +79,8 @@
         SELECT COUNT (iid)  FROM rec_pre_input WHERE irid=0 AND  batch_id=#{batchId}
     </select>
 
+    <select id="getAllBatcrRec" resultType="RecPreInput">
+        SELECT * FROM rec_pre_input WHERE irid=0 AND  batch_id=#{batchId}
+    </select>
+
 </mapper>
