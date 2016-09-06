@@ -3,21 +3,21 @@
          xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
          updateCheck="false">
     <diskStore path="java.io.tmpdir" />
-    <defaultCache eternal="false"
+    <defaultCache eternal="true"
                   maxElementsInMemory="1000"
                   overflowToDisk="false"
                   diskPersistent="false"
-                  timeToIdleSeconds="0"
-                  timeToLiveSeconds="1200"
+                  timeToIdleSeconds="28600"
+                  timeToLiveSeconds="28800"
                   memoryStoreEvictionPolicy="LRU" />
 
     <cache name="departCache"
-           eternal="false"
-           maxElementsInMemory="100"
+           eternal="true"
+           maxElementsInMemory="1000"
            overflowToDisk="false"
            diskPersistent="false"
-           timeToIdleSeconds="0"
-           timeToLiveSeconds="1200"
+           timeToIdleSeconds="28600"
+           timeToLiveSeconds="28800"
            memoryStoreEvictionPolicy="LRU" />
 
 </ehcache>
