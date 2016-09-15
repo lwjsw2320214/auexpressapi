@@ -42,7 +42,6 @@ public class RecPreInputService{
     @Transactional(readOnly = false)
    public  RecPreInput getRecPreInput(Integer iid,Integer icid,String waybillId,Integer batchId){
         RecPreInput recPreInput=null;
-        //如果旧运单不为空则表示要这个运单为新运单要通过查询获取id
         if (!StringUtils.isEmpty(waybillId)){
             iid=  dao.getiid(icid,waybillId);
             dao.saveBatcRecRecPreInput(iid, batchId, new Date());
@@ -53,18 +52,10 @@ public class RecPreInputService{
         return  recPreInput;
     }
 
-    /**
-     * 查询当前批次下
-     * 面是否有还有数据
-     * */
     public  Integer getBatcrRecCount(Integer batchId){
         return  dao.getBatcrRecCount(batchId);
     }
 
-    /**
-     * 查询当前批次下所有
-     * 所有的未处理运单
-     * */
     public  List<RecPreInput> getAllBatcrRec(Integer batchId){
         return  dao.getAllBatcrRec(batchId);
     }

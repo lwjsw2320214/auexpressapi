@@ -27,7 +27,7 @@ public class RecPreInputController {
     RecPreInputService service;
     @Autowired
     UserLoginServer userLoginServer;
-    //每页展示数量
+
     private final  Integer rowCount=15;
 
     @RequestMapping(value = {"list", ""},method = RequestMethod.POST)
@@ -59,13 +59,6 @@ public class RecPreInputController {
         }
         return ajaxJson;
     }
-
-    /**
-     * 获取到单个运单
-     * @param iid 运单id
-     * @param icid 用户id
-     * @param  waybillId 旧运单号id
-     * */
     @RequestMapping(value = "getRecPreInput",method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson getRecPreInput(Integer iid,Integer icid,String waybillId,String username,String token,Integer batchId){
@@ -81,10 +74,7 @@ public class RecPreInputController {
         return  ajaxJson;
     }
 
-    /**
-     * 获取当前批次
-     * 下所有的数据
-     * */
+
     @RequestMapping(value = "getAllBatcrRec",method = RequestMethod.POST)
     @ResponseBody
     public AjaxJson getAllBatcrRec(String username,String token,Integer batchId){

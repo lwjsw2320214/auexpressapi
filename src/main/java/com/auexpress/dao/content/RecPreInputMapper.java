@@ -18,12 +18,12 @@ public interface RecPreInputMapper {
     Integer getAllRowCount(@Param("icid") Integer icid, @Param("irid") Integer irid,@Param("batchId")Integer batchId,@Param("cnum")String cnum);
 
     /**
-     * ¸ù¾İÔ­Ê¼ÔËµ¥ºÅ»ñÈ¡ÔËµ¥id
+     * æ ¹æ®åŸå§‹è¿å•å·è·å–è¿å•id
      * */
     Integer getiid(@Param("icid")Integer icid,@Param("waybillId")String waybillId);
 
     /**
-     * »ñÈ¡µ¥¸öÔËµ¥µÄÏêÏ¸ĞÅÏ¢
+     * è·å–å•ä¸ªè¿å•çš„è¯¦ç»†ä¿¡æ¯
      * */
     RecPreInput getRecPreInput(@Param("iid")Integer iid);
 
@@ -31,13 +31,13 @@ public interface RecPreInputMapper {
 
 
     /**
-     * ²éÑ¯µ±Ç°Åú´ÎºÅÏÂÃæÊÇ·ñ»¹ÓĞÊı¾İ
+     * æŸ¥è¯¢å½“å‰æ‰¹æ¬¡å·ä¸‹é¢æ˜¯å¦è¿˜æœ‰æ•°æ®
      * */
      Integer getBatcrRecCount(@Param("batchId")Integer batchId);
 
     /**
-     * »ñÈ¡µ±Ç°Åú´ÎÏÂËùÓĞÎ´´¦ÀíµÄ
-     * ÔËµ¥
+     * è·å–å½“å‰æ‰¹æ¬¡ä¸‹æ‰€æœ‰æœªå¤„ç†çš„
+     * è¿å•
      * */
     List<RecPreInput> getAllBatcrRec(@Param("batchId")Integer batchId);
  }
