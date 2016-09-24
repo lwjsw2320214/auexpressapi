@@ -44,9 +44,13 @@ public class UserLoginServer {
 
     public void removeCache(String key)
     {
-        CacheManager cacheManager = CacheManager.create();
-        Cache cache = cacheManager.getCache("departCache");
-        cache.remove(key);
+        try {
+            CacheManager cacheManager = CacheManager.create();
+            Cache cache = cacheManager.getCache("departCache");
+            cache.remove(key);
+        }catch (IllegalStateException e){
+            e.printStackTrace();
+        }
     }
 
     public boolean userVerification(String username, String token)
