@@ -1,10 +1,8 @@
 package com.auexpress.service;
 
-import com.auexpress.entity.Express;
 import com.auexpress.entity.User;
 import com.auexpress.dao.login.UserMapper;
 import com.auexpress.util.GuidUtil;
-import com.sun.tools.internal.ws.wsdl.document.jaxws.Exception;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
@@ -12,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.io.IOException;
 
 /**
  * Created by 维军 on 2016/07/18.
@@ -48,13 +44,9 @@ public class UserLoginServer {
 
     public void removeCache(String key)
     {
-        try{
         CacheManager cacheManager = CacheManager.create();
         Cache cache = cacheManager.getCache("departCache");
         cache.remove(key);
-        }catch (IllegalStateException e){
-            e.printStackTrace();
-        }
     }
 
     public boolean userVerification(String username, String token)

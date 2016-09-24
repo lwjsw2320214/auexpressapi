@@ -34,8 +34,6 @@ public class IndexController
         AjaxJson ajaxJson = new AjaxJson();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        //移除缓存
-        userLoginServer.removeCache(username);
         String pd = "";
         try
         {
