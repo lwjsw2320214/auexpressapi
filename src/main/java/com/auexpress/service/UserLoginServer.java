@@ -2,6 +2,7 @@ package com.auexpress.service;
 
 import com.auexpress.entity.User;
 import com.auexpress.dao.login.UserMapper;
+import com.auexpress.util.EncryptionCommen;
 import com.auexpress.util.GuidUtil;
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
@@ -23,7 +24,6 @@ public class UserLoginServer {
     @Autowired
     ClientArcService clientArcService;
 
-    @Cacheable(cacheNames={"departCache"}, key="#username")
     public User login(String username)
     {
         GuidUtil uuid = new GuidUtil();
@@ -53,12 +53,19 @@ public class UserLoginServer {
         }
     }
 
+    @Cacheable(cacheNames={"departCache"}, key="#username")
+    public User addUserCache(User user,String username){
+        return  user;
+    }
+
     public boolean userVerification(String username, String token)
     {
+        String c= EncryptionCommen.EncoderByMd5(username+token);
+        System.out.println("===========加密后的缓存key================="+c);
         boolean verification = false;
         CacheManager cacheManager = CacheManager.create();
         Cache cache = cacheManager.getCache("departCache");
-        Element element = cache.get(username);
+        Element element = cache.get(c);
         if (element != null)
         {
             User user = (User)element.getObjectValue();

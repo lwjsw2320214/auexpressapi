@@ -34,8 +34,6 @@ public class IndexController
         AjaxJson ajaxJson = new AjaxJson();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        //移除缓存
-        userLoginServer.removeCache(username);
         String pd = "";
         try
         {
@@ -50,6 +48,8 @@ public class IndexController
         User user = this.userLoginServer.login(username);
         if ((user != null) && (password.equals(user.getClientpassword())) && (user.getToken() != null))
         {
+            String c=EncryptionCommen.EncoderByMd5(username+user.getToken());
+            this.userLoginServer.addUserCache(user,c);
             ajaxJson.setResult(Boolean.valueOf(true));
             ajaxJson.setObj(user);
         }
